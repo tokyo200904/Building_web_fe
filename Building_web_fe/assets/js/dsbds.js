@@ -1,4 +1,5 @@
-let bdsToDelete = null;
+let bdsToDeleteId = null;
+let bdsToDeleteName = null;
 let bdsList = []; // lưu toàn bộ danh sách từ API
 const pageSize = 5; // số card mỗi trang
 let currentPage = 1;
@@ -6,7 +7,7 @@ let currentPage = 1;
 // Load danh sách từ API
 async function loadBds() {
     try {
-        const response = await fetch('http://localhost:8081/api/v1/bat-dong-san');
+        const response = await fetch('http://localhost:8081/api/v1/bds');
         if (!response.ok) throw new Error('HTTP error! Status: ' + response.status);
         bdsList = await response.json();
         renderPage(1); // load trang đầu tiên
@@ -35,15 +36,19 @@ let badgeText = '';
 switch(bds.trangThai) {
     case 'cho_thue':
         badgeClass = 'bg-success';
-        badgeText = 'cho thuê';
+        badgeText = 'BDS cho thuê';
         break;
     case 'ban':
         badgeClass = 'bg-danger';
-        badgeText = 'bán';
+        badgeText = 'BDS bán';
         break;
     case 'dang_xu_ly':
         badgeClass = 'bg-primary';
-        badgeText = 'Đang chờ xử lý';
+        badgeText = 'BDS Đang chờ xử lý';
+        break;
+        case 'da_ban':
+        badgeClass = 'bg-primary';
+        badgeText = 'BDS Đã bán';
         break;
     default:
         badgeText = 'Không xác định';
@@ -74,13 +79,13 @@ switch(bds.trangThai) {
                             </li>
                         </ul>
                         <div class="mt-auto">
-                            <button class="btn btn-primary" onclick="viewBds('${bds.tieuDe}', '${bds.viTri}')">
+                            <button class="btn btn-primary" onclick="viewBds(${bds.maBds})">
                                 <i class="bi bi-eye"></i> Xem chi tiết
                             </button>
-                            <button class="btn btn-outline-warning ms-2" onclick="editBds('${bds.tieuDe}')">
+                            <button class="btn btn-outline-warning ms-2" onclick="editBds(${bds.maBds})">
                                 <i class="bi bi-pencil-square"></i> Sửa
                             </button>
-                            <button class="btn btn-outline-danger ms-2" onclick="showDeleteModal('${bds.tieuDe}')">
+                            <button class="btn btn-outline-danger ms-2" onclick="showDeleteModal(${bds.maBds}, '${bds.tieuDe}')">
                                 <i class="bi bi-trash"></i> Xóa
                             </button>
                         </div>
@@ -112,33 +117,63 @@ function renderPagination() {
 }
 
 // Các hàm điều hướng
-function viewBds(tieuDe, viTri) {
-    window.location.href = `detail.html?tieuDe=${encodeURIComponent(tieuDe)}&viTri=${encodeURIComponent(viTri)}`;
+function viewBds(id) {
+    window.location.href = `Buldinh_admin_ctsp.html?id=${id}`;
 }
 
-function editBds(tieuDe) {
-    window.location.href = `edit.html?tieuDe=${encodeURIComponent(tieuDe)}`;
+function editBds(id) {
+    // Chuyển sang trang sửa và truyền ID
+    window.location.href = `Building_admin_editbds.html?id=${id}`;
 }
 
 // Xóa
-function showDeleteModal(tieuDe) {
-    bdsToDelete = tieuDe;
+// **<-- Đặt định nghĩa hàm showDeleteModal ở đây -->**
+function showDeleteModal(id, tieuDe) {
+    bdsToDeleteId = id; // Lưu ID để xóa
+    bdsToDeleteName = tieuDe; // Lưu tên để hiển thị trong modal
     document.getElementById('deleteBdsName').textContent = tieuDe;
     const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
     deleteModal.show();
 }
 
-document.getElementById('confirmDeleteBtn').addEventListener('click', () => {
-    if (bdsToDelete) {
-        // TODO: Gọi API xóa ở đây
-        alert(`Đã xóa: ${bdsToDelete}`);
-        bdsToDelete = null;
 
-        const modalEl = document.getElementById('deleteModal');
-        const modalInstance = bootstrap.Modal.getInstance(modalEl);
-        modalInstance.hide();
+// Hàm xác nhận xóa: Đây là nơi chúng ta gọi API DELETE
+document.getElementById('confirmDeleteBtn').addEventListener('click', async () => {
+    if (bdsToDeleteId) {
+        try {
+            // Thực hiện cuộc gọi API DELETE
+            const response = await fetch(`http://localhost:8081/api/v1/bds/${bdsToDeleteId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                    // Thêm Authorization header nếu API của bạn yêu cầu token
+                    // 'Authorization': 'Bearer YOUR_AUTH_TOKEN'
+                }
+            });
 
-        loadBds();
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({ message: 'Không thể đọc thông báo lỗi từ server.' }));
+                throw new Error(errorData.message || `Lỗi khi xóa BĐS ID ${bdsToDeleteId}: ${response.statusText} (Status: ${response.status})`);
+            }
+
+
+            bdsToDeleteId = null;
+            bdsToDeleteName = null;
+
+            const modalEl = document.getElementById('deleteModal');
+            const modalInstance = bootstrap.Modal.getInstance(modalEl);
+            if (modalInstance) { // Kiểm tra xem modalInstance có tồn tại không
+                modalInstance.hide();
+            }
+
+            loadBds();
+
+        } catch (error) {
+            console.error('Lỗi khi xóa BĐS:', error);
+            alert('Có lỗi xảy ra khi xóa bất động sản: ' + error.message);
+        }
+    } else {
+        alert('Không có bất động sản nào được chọn để xóa.');
     }
 });
 

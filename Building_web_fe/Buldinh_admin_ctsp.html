@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Danh sach toa nha</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+    <link rel="stylesheet" href="../Building_web_fe/assets/css/style_admin_ctsp.css">
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Updated: Apr 20 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+<header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">NiceAdmin</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item dropdown">
+
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+          </a><!-- End Profile Iamge Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>Kevin Anderson</h6>
+              <span>Web Designer</span>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-gear"></i>
+                <span>Account Settings</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                <i class="bi bi-question-circle"></i>
+                <span>Need Help?</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header>
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " href="index.html">
+          <i class="bi bi-grid"></i>
+          <span>Quản lý tòa nhà</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+    </ul>
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " href="index.html">
+          <i class="bi bi-person-vcard-fill"></i>
+          <span>Quản lý tài khoản</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+    </ul>
+
+  </aside>
+  
+  <!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+<div id="loading-spinner" class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <div id="property-content" class="d-none">
+
+        <div class="container mt-4">
+            <div class="row align-items-center mb-3">
+                <div class="col-lg-8">
+                    <h1 class="property-title fw-bold" id="propertyTitle"></h1>
+                    <p class="property-address text-muted fs-5">
+                        <i class="bi bi-geo-alt-fill text-primary me-2"></i>
+                        <span id="propertyAddress"></span>
+                    </p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <div class="property-price display-5 fw-bold text-danger" id="propertyPrice">
+                        </div>
+                </div>
+            </div>
+            <hr class="mb-4">
+        </div>
+
+        <div class="container mb-5">
+            <div class="row">
+                <div class="col-12">
+                    <div class="position-relative">
+                        <div id="propertyGalleryCarousel" class="carousel slide bg-light rounded-lg shadow-sm overflow-hidden" data-bs-interval="false">
+                            <div class="carousel-inner" id="carouselMainImages">
+                                </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#propertyGalleryCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#propertyGalleryCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                            <span class="image-counter badge bg-dark opacity-75" id="imageCounter"></span>
+                        </div>
+                        <div class="thumbnail-nav mt-3 d-flex flex-nowrap overflow-auto" id="thumbnailNav">
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-8">
+
+                    <div class="card border-0 shadow-sm mb-4 property-stats">
+                        <div class="card-body py-4">
+                            <div class="row text-center">
+                                <div class="col-6 col-md-3 mb-3 mb-md-0">
+                                    <i class="bi bi-arrows-fullscreen text-primary stat-icon"></i>
+                                    <div>Diện tích</div>
+                                    <strong id="statArea"></strong>
+                                </div>
+                                <div class="col-6 col-md-3 mb-3 mb-md-0">
+                                    <i class="bi bi-door-closed text-primary stat-icon"></i>
+                                    <div>Phòng ngủ</div>
+                                    <strong id="statBedrooms"></strong>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <i class="bi bi-droplet text-primary stat-icon"></i>
+                                    <div>Phòng tắm</div>
+                                    <strong id="statBathrooms"></strong>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <i class="bi bi-calendar-check text-primary stat-icon"></i>
+                                    <div>Năm XD</div>
+                                    <strong id="detailNamXayDung"></strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body p-4">
+                            <h4 class="section-title">Mô tả chi tiết</h4>
+                            <div id="propertyDescription" class="property-description">
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body p-4">
+                            <h4 class="section-title">Đặc điểm & Tiện ích</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="list-group list-group-flush property-features">
+                                        <li class="list-group-item d-flex align-items-center">
+                                            <i class="bi bi-house-door me-2 text-primary feature-icon"></i>
+                                            <strong>Loại BĐS:</strong> <span id="detailLoaiBDS"></span>
+                                        </li>
+                                        <li class="list-group-item d-flex align-items-center">
+                                            <i class="bi bi-tags-fill me-2 text-primary feature-icon"></i>
+                                            <strong>Trạng thái:</strong> <span id="detailTrangThai"></span>
+                                        </li>
+                                        <li class="list-group-item d-flex align-items-center">
+                                            <i class="bi bi-boxes me-2 text-primary feature-icon"></i>
+                                            <strong>Nội thất:</strong> <span id="detailNoiThat"></span>
+                                        </li>
+                                        <li class="list-group-item d-flex align-items-center">
+                                            <i class="bi bi-building-fill me-2 text-primary feature-icon"></i>
+                                            <strong>Tổng số tầng:</strong> <span id="detailTongTang"></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                     <ul class="list-group list-group-flush property-features">
+                                        <li class="list-group-item d-flex align-items-center">
+                                            <i class="bi bi-p-circle me-2 text-primary feature-icon"></i>
+                                            <strong>Bãi đỗ xe:</strong> <span id="detailBaiDoXe"></span>
+                                        </li>
+                                        <li class="list-group-item d-flex align-items-center">
+                                            <i class="bi bi-view-list me-2 text-primary feature-icon"></i>
+                                            <strong>Ban công:</strong> <span id="detailBanCong"></span>
+                                        </li>
+                                        <li class="list-group-item d-flex align-items-center">
+                                            <i class="bi bi-arrow-up-circle me-2 text-primary feature-icon"></i>
+                                            <strong>Thang máy:</strong> <span id="detailThangMay"></span>
+                                        </li>
+                                        <li class="list-group-item d-flex align-items-center">
+                                            <i class="bi bi-calendar-plus me-2 text-primary feature-icon"></i>
+                                            <strong>Ngày tạo:</strong> <span id="detailNgayTao"></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body p-4">
+                            <h4 class="section-title">Vị trí trên bản đồ</h4>
+                            <div class="ratio ratio-16x9 rounded-lg overflow-hidden">
+                                <iframe 
+                                    src="http://googleusercontent.com/maps.google.com/4{data.viTri}&z=15&output=embed" 
+                                    style="border:0;" 
+                                    allowfullscreen="" 
+                                    loading="lazy" 
+                                    referrerpolicy="no-referrer-when-downgrade">
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="card border-0 shadow-sm sticky-top agent-card" style="top: 20px;">
+                        <div class="card-body p-4 text-center">
+                            <img src="https://via.placeholder.com/120x120.png?text=Agent" 
+                                 class="rounded-circle agent-avatar mb-3" 
+                                 alt="Ảnh đại diện"
+                                 id="agentAvatar">
+                            
+                            <h5 class="card-title fw-bold mb-1" id="agentName"></h5>
+                            <p class="text-muted mb-3" id="agentRole"></p>
+
+                            <div class="d-grid gap-3">
+                                <a href="#" id="btnShowPhone" class="btn btn-success btn-lg fw-bold">
+                                    <i class="bi bi-telephone-fill me-2"></i> 
+                                    <span>HIỆN SỐ ĐIỆN THOẠI</span>
+                                </a>
+                                <a href="#" id="btnChatZalo" class="btn btn-primary btn-lg fw-bold" style="background-color: #0068FF;">
+                                    <i class="bi bi-chat-dots-fill me-2"></i> 
+                                    Chat Zalo
+                                </a>
+                                <button class="btn btn-outline-secondary btn-lg" id="btnSaveListing">
+                                    <i class="bi bi-heart me-2"></i> 
+                                    Lưu tin
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </main><!-- End #main -->
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+  <script src="assets\jquery-3.7.1.min.js"></script>
+
+  <script src="assets/js/main.js"></script>
+      <script src="../Building_web_fe/assets/js/ctbds.js"></script>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+
+
+</body>
+
+</html>

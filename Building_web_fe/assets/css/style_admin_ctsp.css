@@ -1,0 +1,292 @@
+/* style-detail-v4.css */
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f2f5; 
+    color: #333;
+}
+
+/* Base styles for cards and sections */
+.card {
+    border-radius: 12px; /* Bo góc card */
+}
+.rounded-lg {
+    border-radius: 12px !important; /* Bo góc cho các element khác */
+}
+
+/* 1. Tiêu đề và giá */
+.property-title {
+    color: #212529;
+    font-weight: 700;
+    font-size: 2.5rem; /* Tăng kích thước tiêu đề */
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+.property-address {
+    font-weight: 400;
+    font-size: 1.15rem !important;
+    color: #6c757d !important;
+    display: flex;
+    align-items: center;
+}
+.property-address i {
+    font-size: 1.4rem;
+    color: #0d6efd !important; /* Icon màu xanh primary */
+}
+.property-price {
+    font-weight: 700;
+    color: #dc3545; 
+    font-size: 2.8rem !important; /* Kích thước giá lớn hơn */
+}
+hr {
+    border-top: 1px solid rgba(0,0,0,.08);
+    margin-top: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+/* 2. Carousel chính */
+#propertyGalleryCarousel .carousel-item img {
+    height: 550px; 
+    object-fit: cover; 
+    border-radius: 12px; /* Bo góc ảnh chính */
+    transition: transform 0.3s ease-in-out; /* Hiệu ứng zoom nhẹ khi chuyển */
+}
+#propertyGalleryCarousel .carousel-control-prev,
+#propertyGalleryCarousel .carousel-control-next {
+    width: 55px; /* Nút lớn hơn */
+    height: 55px;
+    background-color: rgba(0, 0, 0, 0.45);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.9;
+    transition: all 0.2s ease;
+}
+#propertyGalleryCarousel .carousel-control-prev:hover,
+#propertyGalleryCarousel .carousel-control-next:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.7);
+    transform: translateY(-50%) scale(1.05); /* Hiệu ứng nhẹ khi hover */
+}
+#propertyGalleryCarousel .carousel-control-prev-icon,
+#propertyGalleryCarousel .carousel-control-next-icon {
+    width: 24px; /* Icon lớn hơn */
+    height: 24px;
+}
+.image-counter {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    padding: 8px 15px;
+    font-size: 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    background-color: rgba(0,0,0,0.6);
+}
+
+/* 3. Thanh Thumbnail Nav */
+.thumbnail-nav {
+    gap: 10px; /* Khoảng cách giữa các thumbnail */
+    padding-bottom: 5px; /* Giảm padding */
+    scroll-behavior: smooth; /* Cuộn mượt mà */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+/* Ẩn scrollbar cho Webkit (Chrome, Safari) */
+.thumbnail-nav::-webkit-scrollbar {
+    display: none;
+}
+.thumbnail-nav img {
+    min-width: 110px; /* Chiều rộng tối thiểu */
+    height: 80px; /* Chiều cao cố định */
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: all 0.2s ease;
+    border: 3px solid transparent; 
+}
+.thumbnail-nav img:hover {
+    opacity: 1;
+    transform: translateY(-3px) scale(1.02); /* Nổi lên nhẹ */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.thumbnail-nav img.active-thumb {
+    opacity: 1;
+    border-color: #0d6efd; 
+    box-shadow: 0 0 0 3px #0d6efd; 
+    transform: translateY(-1px);
+}
+
+/* 4. Thẻ Thông số (Stats) */
+.property-stats .card-body {
+    padding: 30px 20px; /* Padding lớn hơn */
+}
+.property-stats .stat-icon {
+    font-size: 2.5rem; /* Icon lớn hơn */
+    display: block;
+    margin-bottom: 12px;
+    color: #0d6efd; 
+}
+.property-stats strong {
+    font-size: 1.2rem; /* Chữ lớn hơn */
+    font-weight: 500;
+    color: #343a40;
+}
+
+/* 5. Tiêu đề các mục (Section Title) */
+.section-title {
+    font-weight: 700;
+    color: #343a40;
+    padding-bottom: 12px;
+    border-bottom: 3px solid #0d6efd; /* Viền dày hơn */
+    display: inline-block;
+    margin-bottom: 2rem;
+    font-size: 1.8rem; /* Tiêu đề mục lớn hơn */
+    position: relative;
+    padding-right: 20px; /* Để tạo khoảng trống cho viền */
+}
+.section-title::after { /* Hiệu ứng gạch dưới nhỏ */
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 60px; /* Độ dài của gạch dưới chính */
+    height: 3px;
+    background-color: #0d6efd;
+    border-radius: 2px;
+}
+.property-description {
+    line-height: 1.8;
+    font-size: 1.05rem;
+    color: #495057;
+}
+.property-features .list-group-item {
+    background-color: transparent; 
+    border: none; /* Loại bỏ viền từng item */
+    padding: 12px 0; /* Padding thoải mái hơn */
+    font-size: 1rem;
+    color: #495057;
+}
+.property-features .list-group-item strong {
+    color: #212529;
+    min-width: 120px; /* Đảm bảo căn chỉnh */
+    display: inline-block;
+    margin-right: 10px;
+}
+.property-features .feature-icon {
+    font-size: 1.2rem; /* Icon nhỏ hơn cho list */
+    color: #0d6efd;
+    margin-right: 10px;
+}
+.list-group-item + .list-group-item {
+    border-top: 1px solid rgba(0,0,0,.05); /* Chỉ gạch ngang giữa các item */
+}
+
+
+/* 6. Thẻ Môi giới (Agent Card) */
+.agent-card {
+    border: none;
+    border-radius: 15px; /* Bo góc nhiều hơn */
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.08) !important; /* Đổ bóng mạnh, chuyên nghiệp */
+}
+.agent-card .agent-avatar {
+    width: 140px; /* Lớn hơn */
+    height: 140px;
+    border: 6px solid #fff; 
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
+}
+.agent-card .btn {
+    font-size: 1.1rem; /* Chữ to hơn */
+    padding: 15px 0; /* To hơn */
+    border-radius: 10px; /* Bo góc nút */
+    font-weight: 600; /* Đậm hơn */
+}
+.agent-card .btn-success {
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+}
+.agent-card .btn-primary {
+    background-color: #007bff !important;
+    border-color: #007bff !important;
+}
+.agent-card .btn-outline-secondary {
+    border-color: #dee2e6;
+    color: #495057;
+}
+.agent-card .btn i {
+    font-size: 1.2rem;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 1199px) { /* Màn hình lớn (xl) trở xuống */
+    #propertyGalleryCarousel .carousel-item img {
+        height: 500px;
+    }
+}
+@media (max-width: 991px) { /* Màn hình tablet (lg) trở xuống */
+    .property-title {
+        font-size: 2rem;
+    }
+    .property-price {
+        font-size: 2.2rem !important;
+    }
+    #propertyGalleryCarousel .carousel-item img {
+        height: 450px;
+    }
+    .thumbnail-nav img {
+        min-width: 90px;
+        height: 65px;
+    }
+    .agent-card {
+        margin-top: 3rem; 
+    }
+    .property-stats .stat-icon {
+        font-size: 2rem;
+    }
+    .section-title {
+        font-size: 1.5rem;
+    }
+}
+@media (max-width: 767px) { /* Màn hình mobile (md) trở xuống */
+    .property-title {
+        font-size: 1.8rem;
+    }
+    .property-address {
+        font-size: 1rem !important;
+    }
+    .property-address i {
+        font-size: 1.2rem;
+    }
+    .property-price {
+        font-size: 2rem !important;
+        text-align: left !important;
+        margin-top: 1rem;
+    }
+    #propertyGalleryCarousel .carousel-item img {
+        height: 350px;
+    }
+    .thumbnail-nav img {
+        min-width: 75px;
+        height: 55px;
+    }
+    .property-stats .col-6 { /* Trên mobile, 2 cột thay vì 4 */
+        margin-bottom: 1.5rem;
+    }
+    .property-stats .col-6:nth-child(even) { /* Bỏ margin-bottom cho hàng dưới cùng */
+        margin-bottom: 0;
+    }
+    .section-title {
+        font-size: 1.4rem;
+    }
+    .property-features .list-group-item {
+        flex-wrap: wrap; /* Cho phép wrap trên màn hình nhỏ */
+    }
+    .property-features .list-group-item strong {
+        min-width: unset;
+        margin-right: 0;
+        width: 100%; /* Chiếm hết chiều rộng */
+        margin-bottom: 5px;
+    }
+}

@@ -30,6 +30,8 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <!-- css tu tao-->
+  <link rel="stylesheet" href="assets/css/style_timkiem.css">
 
   <!-- =======================================================
   * Template Name: NiceAdmin
@@ -43,7 +45,7 @@
 <body>
 
   <!-- ======= Header ======= -->
-<header id="header" class="header fixed-top d-flex align-items-center">
+  <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
@@ -133,7 +135,7 @@
       </li><!-- End Dashboard Nav -->
 
     </ul>
-        <ul class="sidebar-nav" id="sidebar-nav">
+    <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
         <a class="nav-link " href="index.html">
@@ -145,271 +147,293 @@
     </ul>
 
   </aside>
-  
+
   <!-- End Sidebar-->
 
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Danh sách tòa nhà</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">
+            <p>Home</p>
+          </li>
           <li class="breadcrumb-item active">Dashboard</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
-
-
-    <!-- bang danh sach -->
-    <section class="section">
-      <div class="row">
-        <div class="col-lg-12">
-          <form role="form" id="listForm">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Tìm Kiếm</h5>
-                <div class="row">
-                  <!-- tim kiem cot 1 -->
-                  <div class="col-sm-6">
-                    <div class="row mb-3 align-items-center">
-                      <label for="inputText" class=" col-form-label">Tên tòa nhà</label>
-                      <div class="col-sm-12">
-                        <input type="text" class="form-control">
-                      </div>
-                    </div>
-
-                  </div>
-                  <!-- General Form Elements -->
-                  <div class="col-sm-6">
-                    <div class="row mb-3 align-items-center">
-                      <label for="inputText" class=" col-form-label">Diện tích sàn</label>
-                      <div class="col-sm-12">
-                        <input type="number" class="form-control">
-                      </div>
-                    </div>
-
-                  </div><!-- End General Form Elements -->
-                </div>
-                <!-- tim kiem cot 2-->
-                <div class="row">
-                  <!-- General Form Elements -->
-                  <div class="col-sm-2">
-                    <div class="row mb-3 align-items-center">
-                      <label for="inputText" class=" col-form-label">Quận</label>
-                      <div class="col-sm-12">
-                        <select class="form-control">
-                          <option value=""> Quận</option>
-                          <option value="">quận 1</option>
-                          <option value="">quận 2</option>
-                          <option value="">quận 3</option>
-                          <option value="">quận 4</option>
-                        </select>
-                      </div>
-                    </div>
-
-                  </div><!-- End General Form Elements -->
-                  <div class="col-sm-5">
-                    <div class="row mb-3 align-items-center">
-                      <label for="inputText" class=" col-form-label">Phường</label>
-                      <div class="col-sm-12">
-                        <input type="text" class="form-control">
-                      </div>
-                    </div>
-
-                  </div><!-- End General Form Elements -->
-                  <!-- General Form Elements -->
-                  <div class="col-sm-5">
-                    <div class="row mb-3 align-items-center">
-                      <label for="inputText" class=" col-form-label">Đường</label>
-                      <div class="col-sm-12">
-                        <input type="text" class="form-control">
-                      </div>
-                    </div>
-
-                  </div><!-- End General Form Elements -->
-                </div>
-                <!-- tim kiem cot 3-->
-                <div class="row">
-                  <!-- General Form Elements -->
-                  <div class="col-sm-4">
-                    <div class="row mb-3 align-items-center">
-                      <label for="inputText" class=" col-form-label">Số tầng hầm</label>
-                      <div class="col-sm-12">
-                        <input type="text" class="form-control">
-                        </input>
-                      </div>
-                    </div>
-
-                  </div><!-- End General Form Elements -->
-                  <div class="col-sm-4">
-                    <div class="row mb-3 align-items-center">
-                      <label for="inputText" class=" col-form-label">Hướng</label>
-                      <div class="col-sm-12">
-                        <input type="text" class="form-control">
-                      </div>
-                    </div>
-
-                  </div><!-- End General Form Elements -->
-                  <!-- General Form Elements -->
-                  <div class="col-sm-4">
-                    <div class="row mb-3 align-items-center">
-                      <label for="inputText" class=" col-form-label">Hạng</label>
-                      <div class="col-sm-12">
-                        <input type="number" class="form-control">
-                      </div>
-                    </div>
-
-                  </div><!-- End General Form Elements -->
-                </div>
-                <!-- tim kiem cot 4-->
-                <div class="row">
-                  <!-- General Form Elements -->
-                  <div class="col-sm-3">
-                    <div class="row mb-3 align-items-center">
-                      <label for="inputText" class=" col-form-label">Diện tích từ</label>
-                      <div class="col-sm-12">
-                        <input type="number" class="form-control">
-                        </input>
-                      </div>
-                    </div>
-
-                  </div><!-- End General Form Elements -->
-                  <div class="col-sm-3">
-                    <div class="row mb-3 align-items-center">
-                      <label for="inputText" class=" col-form-label">Diện tích đến</label>
-                      <div class="col-sm-12">
-                        <input type="number" class="form-control">
-                      </div>
-                    </div>
-
-                  </div><!-- End General Form Elements -->
-
-                  <div class="col-sm-3">
-                    <div class="row mb-3 align-items-center">
-                      <label for="inputText" class=" col-form-label">Giá thuê từ</label>
-                      <div class="col-sm-12">
-                        <input type="number" class="form-control">
-                      </div>
-                    </div>
-
-                  </div><!-- End General Form Elements -->
-                  <div class="col-sm-3">
-                    <div class="row mb-3 align-items-center">
-                      <label for="inputText" class=" col-form-label">Giá thuê đến</label>
-                      <div class="col-sm-12">
-                        <input type="number" class="form-control">
-                      </div>
-                    </div>
-
-                  </div><!-- End General Form Elements -->
-                </div>
-                <!-- tim kiem cot 5-->
-                <div class="row">
-                  <!-- General Form Elements -->
-                  <div class="col-sm-5">
-                    <div class="row mb-3 align-items-center">
-                      <label for="inputText" class=" col-form-label">Tên quản lý</label>
-                      <div class="col-sm-12">
-                        <input type="text" class="form-control">
-                        </input>
-                      </div>
-                    </div>
-
-                  </div><!-- End General Form Elements -->
-                  <div class="col-sm-5">
-                    <div class="row mb-3 align-items-center">
-                      <label for="inputText" class=" col-form-label">Số điện thoại quản lý</label>
-                      <div class="col-sm-12">
-                        <input type="number" class="form-control">
-                      </div>
-                    </div>
-
-                  </div><!-- End General Form Elements -->
-                  <!-- General Form Elements -->
-                  <div class="col-sm-2">
-                    <div class="row mb-3 align-items-center">
-                      <label for="inputText" class=" col-form-label">Chọn nhân viên</label>
-                      <div class="col-sm-12">
-                        <select class="form-control">
-                          <option value="">Nhân viên</option>
-                          <option value="">Nhân viên 1</option>
-                          <option value="">Nhân viên 2</option>
-                          <option value="">Nhân viên 3</option>
-                          <option value="">Nhân viên 4</option>
-                        </select>
-                      </div>
-                    </div>
-
-                  </div><!-- End General Form Elements -->
-                </div>
-                <div class="row">
-                  <div class="col-sm-2 ">
-                    <input class="form-check-input" type="checkbox" name="gridRadios" id="gridRadios1" value="option1"
-                      checked="">
-                    <label class="form-check-label" for="gridRadios1">Nội thất</label>
-                  </div>
-                  <div class="col-sm-2 ">
-                    <input class="form-check-input" type="checkbox" name="gridRadios" id="gridRadios1" value="option1"
-                      checked="">
-                    <label class="form-check-label" for="gridRadios1">Nguyên căn</label>
-                  </div>
-                  <div class="col-sm-2 ">
-                    <input class="form-check-input" type="checkbox" name="gridRadios" id="gridRadios1" value="option1"
-                      checked="">
-                    <label class="form-check-label" for="gridRadios1">Tầng trệt</label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-12 ">
-                    <button style="width: 150px; margin-top: 15px;" type="button" class="btn btn-primary"
-                      id="btnsearchBuilding"><i class="bi bi-search"></i> Tìm kiếm</button>
-                    <button style="margin-top: 15px" type="button" class="btn btn-success bx-pull-right"
-                      onclick="themToaNha()"><i class="bi bi-building-add"></i></button>
-                  </div>
-                </div>
-              </div>
+    <div class="search-filter-container">
+      <div class="container">
+        <div class="row g-3">
+          <div class="col-12">
+            <div class="input-group main-search-bar">
+              <input type="text" class="form-control" id="mainSearchInput" placeholder="Hồ Chí Minh" value="">
+              <button class="btn btn-search" type="button" id="btnMainSearch">
+                <i class="bi bi-search"></i> Tìm kiếm
+              </button>
             </div>
-          </form>
+          </div>
+
+          <div class="col-12">
+            <div class="filter-buttons-row">
+              <button class="btn btn-filter btn-filter-main" type="button" data-bs-toggle="modal"
+                data-bs-target="#filterModal">
+                <i class="bi bi-funnel"></i> Lọc <span class="badge bg-danger ms-1" id="filterCountBadge">0</span>
+              </button>
+
+              <div class="dropdown">
+                <button class="btn btn-filter dropdown-toggle" type="button" id="dropdownLoaiNha"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  Loại nhà đất
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownLoaiNha">
+                  <li><a class="dropdown-item" href="#" data-value="all">Tất cả</a></li>
+                  <li><a class="dropdown-item" href="#" data-value="can_ho">Căn hộ</a></li>
+                  <li><a class="dropdown-item" href="#" data-value="nha_o">Nhà ở</a></li>
+                  <li><a class="dropdown-item" href="#" data-value="dat">Đất nền</a></li>
+                  <li><a class="dropdown-item" href="#" data-value="thuong_mai">Thương mại</a></li>
+                </ul>
+              </div>
+
+              <button class="btn btn-filter" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasPrice"
+                aria-controls="offcanvasPrice" id="btnPriceFilterOut">
+                Khoảng giá
+              </button>
+
+              <button class="btn btn-filter" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasArea"
+                aria-controls="offcanvasArea" id="btnAreaFilterOut">
+                Diện tích
+              </button>
+
+            </div>
+          </div>
         </div>
       </div>
-    </section>
-    <!-- het bang danh sach -->
+    </div>
 
-</div>
-<div class="container mt-5">
-    <div id="bds-container"></div>
-</div>
-<!-- Pagination -->
-    <nav>
-        <ul class="pagination justify-content-center mt-4" id="pagination"></ul>
-    </nav>
-<!-- Modal xác nhận xóa -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Bạn có chắc chắn muốn xóa <span id="deleteBdsName"></span>?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Xóa</button>
+    <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="filterModalLabel"><i class="bi bi-funnel me-2"></i>Bộ lọc nâng cao</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="advancedFilterForm">
+              <div class="mb-3">
+                <label for="filterTrangThai" class="form-label">Loại giao dịch</label>
+                <select class="form-select" id="filterTrangThai">
+                  <option value="">Tất cả</option>
+                  <option value="ban">Bán</option>
+                  <option value="cho_thue">Cho thuê</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="filterLoaiBds" class="form-label">Loại bất động sản</label>
+                <select class="form-select" id="filterLoaiBds">
+                  <option value="">Tất cả</option>
+                  <option value="can_ho">Căn hộ</option>
+                  <option value="nha_o">Nhà ở</option>
+                  <option value="dat">Đất nền</option>
+                  <option value="thuong_mai">Thương mại</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Khoảng giá</label>
+                <button class="btn btn-offcanvas-trigger default-value" type="button" data-bs-toggle="offcanvas"
+                  data-bs-target="#offcanvasPrice" id="btnModalPrice">
+                  <i class="bi bi-cash-coin"></i>
+                  <span id="filterModalSelectedPrice">Tất cả mức giá</span>
+                  <i class="bi bi-chevron-right ms-auto"></i>
+                </button>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Diện tích</label>
+                <button class="btn btn-offcanvas-trigger default-value" type="button" data-bs-toggle="offcanvas"
+                  data-bs-target="#offcanvasArea" id="btnModalArea">
+                  <i class="bi bi-arrows-fullscreen"></i>
+                  <span id="filterModalSelectedArea">Tất cả diện tích</span>
+                  <i class="bi bi-chevron-right ms-auto"></i>
+                </button>
+              </div>
+
+              <div class="mb-3">
+                <label for="filterViTri" class="form-label">Khu vực / Địa điểm</label>
+                <input type="text" class="form-control" id="filterViTri" placeholder="Ví dụ: Quận 1, Hà Nội, ...">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" id="resetAdvancedFilters">Đặt lại</button>
+            <button type="button" class="btn btn-primary" id="applyAdvancedFilters">Áp dụng bộ lọc</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasPrice" aria-labelledby="offcanvasPriceLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasPriceLabel">
+          <i class="bi bi-arrow-left" role="button" aria-label="Back"></i> Khoảng giá
+        </h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="offcanvas-content">
+          <div class="row filter-input-row">
+            <div class="col-6 filter-input-group">
+              <label for="offcanvasMinPriceInput" class="form-label">Từ</label>
+              <input type="number" class="form-control" id="offcanvasMinPriceInput" min="0" placeholder="">
+            </div>
+            <div class="col-6 filter-input-group">
+              <label for="offcanvasMaxPriceInput" class="form-label">Đến</label>
+              <input type="number" class="form-control" id="offcanvasMaxPriceInput" min="0" placeholder="">
+            </div>
+          </div>
+
+          <div class="mt-3" id="offcanvasPriceOptionsContainer">
+            <div class="filter-option-item" data-min="0" data-max="max" data-label="Tất cả mức giá">
+              Tất cả mức giá
+              <i class="bi bi-check-circle-fill check-icon"></i>
+            </div>
+            <div class="filter-option-item" data-min="0" data-max="1000" data-label="Dưới 1 tỷ">
+              Dưới 1 tỷ
+              <i class="bi bi-check-circle-fill check-icon"></i>
+            </div>
+            <div class="filter-option-item" data-min="1000" data-max="3000" data-label="1 - 3 tỷ">
+              1 - 3 tỷ
+              <i class="bi bi-check-circle-fill check-icon"></i>
+            </div>
+            <div class="filter-option-item" data-min="3000" data-max="5000" data-label="3 - 5 tỷ">
+              3 - 5 tỷ
+              <i class="bi bi-check-circle-fill check-icon"></i>
+            </div>
+            <div class="filter-option-item" data-min="5000" data-max="10000" data-label="5 - 10 tỷ">
+              5 - 10 tỷ
+              <i class="bi bi-check-circle-fill check-icon"></i>
+            </div>
+            <div class="filter-option-item" data-min="10000" data-max="max" data-label="Trên 10 tỷ">
+              Trên 10 tỷ
+              <i class="bi bi-check-circle-fill check-icon"></i>
+            </div>
+            <div class="filter-option-item" data-min="custom" data-max="custom" data-label="Tùy chỉnh">
+              Tùy chỉnh
+              <i class="bi bi-check-circle-fill check-icon"></i>
+            </div>
+          </div>
+        </div>
+        <div class="offcanvas-footer">
+          <button type="button" class="btn btn-secondary" id="resetOffcanvasPrice">Đặt lại</button>
+          <button type="button" class="btn btn-primary-apply" id="applyOffcanvasPrice">Áp dụng</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasArea" aria-labelledby="offcanvasAreaLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasAreaLabel">
+          <i class="bi bi-arrow-left" role="button" aria-label="Back"></i> Diện tích
+        </h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="offcanvas-content">
+          <div class="row filter-input-row">
+            <div class="col-6 filter-input-group">
+              <label for="offcanvasMinAreaInput" class="form-label">Từ</label>
+              <input type="number" class="form-control" id="offcanvasMinAreaInput" min="0" placeholder="">
+            </div>
+            <div class="col-6 filter-input-group">
+              <label for="offcanvasMaxAreaInput" class="form-label">Đến</label>
+              <input type="number" class="form-control" id="offcanvasMaxAreaInput" min="0" placeholder="">
+            </div>
+          </div>
+
+          <div class="mt-3" id="offcanvasAreaOptionsContainer">
+            <div class="filter-option-item" data-min="0" data-max="max" data-label="Tất cả diện tích">
+              Tất cả diện tích
+              <i class="bi bi-check-circle-fill check-icon"></i>
+            </div>
+            <div class="filter-option-item" data-min="0" data-max="30" data-label="Dưới 30 m²">
+              Dưới 30 m²
+              <i class="bi bi-check-circle-fill check-icon"></i>
+            </div>
+            <div class="filter-option-item" data-min="30" data-max="50" data-label="30 - 50 m²">
+              30 - 50 m²
+              <i class="bi bi-check-circle-fill check-icon"></i>
+            </div>
+            <div class="filter-option-item" data-min="50" data-max="80" data-label="50 - 80 m²">
+              50 - 80 m²
+              <i class="bi bi-check-circle-fill check-icon"></i>
+            </div>
+            <div class="filter-option-item" data-min="80" data-max="100" data-label="80 - 100 m²">
+              80 - 100 m²
+              <i class="bi bi-check-circle-fill check-icon"></i>
+            </div>
+            <div class="filter-option-item" data-min="100" data-max="150" data-label="100 - 150 m²">
+              100 - 150 m²
+              <i class="bi bi-check-circle-fill check-icon"></i>
+            </div>
+            <div class="filter-option-item" data-min="150" data-max="200" data-label="150 - 200 m²">
+              150 - 200 m²
+              <i class="bi bi-check-circle-fill check-icon"></i>
+            </div>
+            <div class="filter-option-item" data-min="200" data-max="250" data-label="200 - 250 m²">
+              200 - 250 m²
+              <i class="bi bi-check-circle-fill check-icon"></i>
+            </div>
+            <div class="filter-option-item" data-min="custom" data-max="custom" data-label="Tùy chỉnh">
+              Tùy chỉnh
+              <i class="bi bi-check-circle-fill check-icon"></i>
+            </div>
+          </div>
+        </div>
+        <div class="offcanvas-footer">
+          <button type="button" class="btn btn-secondary" id="resetOffcanvasArea">Đặt lại</button>
+          <button type="button" class="btn btn-primary-apply" id="applyOffcanvasArea">Áp dụng</button>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="container mt-5">
+      <h2>Danh sách tòa nhà</h2>
+      <div id="bds-container"></div>
+    </div>
+    <!-- Pagination -->
+    <nav>
+      <ul class="pagination justify-content-center mt-4" id="pagination"></ul>
+    </nav>
+    <!-- Modal xác nhận xóa -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Bạn có chắc chắn muốn xóa <span id="deleteBdsName"></span>?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+            <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Xóa</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </main><!-- End #main -->
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i      
       class="bi bi-arrow-up-short"></i></a>
 
-    <script src="../NiceAdmin/assets/js/dsbds.js"></script>
-  <!-- Vendor JS Files -->
+  <script src="assets/jquery-3.7.1.min.js"></script>
+
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/chart.js/chart.umd.js"></script>
@@ -419,104 +443,10 @@
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
-  <!-- Template Main JS File -->
-
-  <!-- Modal -->
-  <div class="modal fade" id="assingmentBuildingModal" tabindex="-1" aria-labelledby="assingmentBuildingModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content shadow-lg border-0 rounded-4">
-
-        <!-- Header -->
-        <div class="modal-header bg-primary text-white">
-          <h5 class="modal-title" id="assingmentBuildingModalLabel">
-            <i class="bi bi-person-lines-fill"></i> Danh sách nhân viên
-          </h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Đóng"></button>
-        </div>
-
-        <!-- Body -->
-        <div class="modal-body">
-          <div class="table-responsive" style="max-height:300px; overflow-y:auto;">
-            <table id="stafflist" class="table table-hover align-middle">
-              <thead class="table-light sticky-top">
-                <tr>
-                  <th style="width:50px;">#</th>
-                  <th>Nhân viên</th>
-                </tr>
-              </thead>
-              <tbody id="employeeTable">
-                <tr>
-                  <td><input type="checkbox" class="form-check-input" value="1" id="checkbox_1"></td>
-                  <td><label class="form-check-label" for="employee1">Nguyễn Văn A</label></td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" class="form-check-input" value="2" id="checkbox_2"></td>
-                  <td><label class="form-check-label" for="employee2">Trần Thị B</label></td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" class="form-check-input" value="3" id="checkbox_3"></td>
-                  <td><label class="form-check-label" for="employee3">Lê Văn C</label></td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" class="form-check-input" value="4" id="checkbox_4"></td>
-                  <td><label class="form-check-label" for="employee4">Phạm Thị D</label></td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" class="form-check-input" value="5" id="checkbox_5"></td>
-                  <td><label class="form-check-label" for="employee5">Nguyễn Thị E</label></td>
-                </tr>
-                <!-- Thêm dòng nhân viên nếu cần -->
-              </tbody>
-            </table>
-            <input type="hidden" id="buildingId" name="buildingId" value="">
-          </div>
-        </div>
-
-        <!-- Footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary border" data-bs-dismiss="modal">
-            <i class="bi bi-x-circle"></i> Hủy
-          </button>
-          <button type="button" class="btn btn-primary" id="btnassingmentBuilding" onclick="submitEmployees()">
-            <i class="bi bi-check2-circle"></i> Giao tòa nhà
-          </button>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
   <script src="assets/js/main.js"></script>
-  <script src="assets\jquery-3.7.1.min.js"></script>
 
-  <script>
-    function assingmentBuilding(buildingId) {
-      const modal = new bootstrap.Modal(document.getElementById('assingmentBuildingModal'));
-      modal.show();
-    }
-    $('#btnassingmentBuilding').click(function (e) {
-      e.preventDefault();
-      var data = {};
-      data['buildingId'] = $('#buildingId').val();
-      var staffs = $('#stafflist').find('tbody input[type = checkbox]:checked').map(function () {
-        return $(this).val();
-      }).get();
-      data['staffs'] = staffs;
-      console.log("ok");
-    });
-  </script>
-  <script>
-    $('#btnsearchBuilding').click(function (e) {
-      e.preventDefault();
-      $('#listForm').submit();
-    });
-  </script>
-  <script>
-    function themToaNha() {
-      window.location.href = "Building_them.html";
-    }
-  </script>
+  <script src="assets/js/dsbds.js"></script>
+  <script src="assets/js/tkbds.js"></script>
 </body>
 
 </html>
