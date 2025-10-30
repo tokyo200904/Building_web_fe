@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Tin Đăng Chờ Duyệt</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        body { background-color: #f8f9fa; }
+        .container-admin { max-width: 1200px; margin: 40px auto; background-color: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .listing-card { margin-bottom: 20px; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; }
+        .listing-card img { width: 100%; height: 180px; object-fit: cover; }
+        .listing-card .card-body { padding: 15px; }
+        .listing-card .card-title { font-size: 1.1em; font-weight: bold; margin-bottom: 5px; }
+        .listing-card .card-text { font-size: 0.9em; color: #555; margin-bottom: 5px; }
+        .action-buttons button { margin-right: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container-admin">
+        <h2 class="text-center mb-4"><i class="bi bi-hourglass-split me-2"></i>Tin Đăng Chờ Duyệt</h2>
+
+        <div id="pendingListingsContainer" class="row">
+            <p class="text-center text-muted" id="loadingMessage">Đang tải tin đăng chờ duyệt...</p>
+        </div>
+
+        <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="detailModalLabel">Chi Tiết Tin Đăng</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="detailModalBody">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img id="detailMainImage" src="" alt="Ảnh chính" class="img-fluid mb-3">
+                                <div id="detailOtherImages" class="d-flex flex-wrap gap-2 mb-3"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <h4 id="detailTitle"></h4>
+                                <p><strong>Mã YC:</strong> <span id="detailId"></span></p>
+                                <p><strong>Người gửi:</strong> <span id="detailUser"></span></p>
+                                <p><strong>Ngày gửi:</strong> <span id="detailDate"></span></p>
+                                <p><strong>Giá:</strong> <span id="detailPrice"></span></p>
+                                <p><strong>Diện tích:</strong> <span id="detailArea"></span></p>
+                                <p><strong>Loại BĐS:</strong> <span id="detailType"></span></p>
+                                <p><strong>Mục đích:</strong> <span id="detailPurpose"></span></p>
+                                <p><strong>Địa chỉ:</strong> <span id="detailLocation"></span></p>
+                                <p><strong>Số phòng:</strong> <span id="detailRooms"></span></p>
+                                <p><strong>Tầng:</strong> <span id="detailFloors"></span></p>
+                                <p><strong>Nội thất:</strong> <span id="detailFurniture"></span></p>
+                                <p><strong>Mô tả:</strong> <span id="detailDescription"></span></p>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-danger" id="rejectFromModalBtn">Từ chối</button>
+                        <button type="button" class="btn btn-success" id="approveFromModalBtn">Phê duyệt</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="rejectModal" tabindex="-1" aria-labelledby="rejectModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="rejectModalLabel">Từ Chối Tin Đăng</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Bạn có chắc muốn từ chối tin đăng này?</p>
+                        <div class="mb-3">
+                            <label for="rejectReason" class="form-label">Lý do từ chối (tùy chọn)</label>
+                            <textarea class="form-control" id="rejectReason" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-danger" id="confirmRejectBtn">Xác nhận Từ chối</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const API_BASE_URL = '/api/admin/yeucau/dangtin'; // Endpoint để lấy và xử lý yêu cầu
+        let currentListingIdToActOn = null; // Biến tạm để lưu ID của tin đang được thao tác
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPendingListings();
+
+            async function loadPendingListings() {
+                const container = document.getElementById('pendingListingsContainer');
+                const loadingMessage = document.getElementById('loadingMessage');
+                container.innerHTML = ''; // Clear previous listings
+                loadingMessage.style.display = 'block';
+
+                try {
+                    // Endpoint này cần được tạo ở backend để trả về danh sách YeuCauDangTin CHO_DUYET
+                    const response = await fetch(`${API_BASE_URL}/pending`);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const listings = await response.json();
+
+                    loadingMessage.style.display = 'none';
+
+                    if (listings.length === 0) {
+                        container.innerHTML = '<p class="text-center text-muted">Không có tin đăng nào chờ duyệt.</p>';
+                        return;
+                    }
+
+                    listings.forEach(listing => {
+                        const card = `
+                            <div class="col-md-4">
+                                <div class="card listing-card">
+                                    <img src="${listing.anhChinh || 'https://via.placeholder.com/400x200?text=No+Image'}" class="card-img-top" alt="${listing.tieuDe}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${listing.tieuDe}</h5>
+                                        <p class="card-text mb-1"><strong>Người gửi:</strong> ${listing.userGuiYeuCau ? listing.userGuiYeuCau.hoTen : 'N/A'}</p>
+                                        <p class="card-text mb-1"><strong>Giá:</strong> ${listing.gia ? listing.gia.toLocaleString('vi-VN') + ' ' + listing.donViTien : 'Thỏa thuận'}</p>
+                                        <p class="card-text mb-1"><strong>Diện tích:</strong> ${listing.dienTich || 'N/A'} m²</p>
+                                        <div class="mt-3 action-buttons">
+                                            <button type="button" class="btn btn-info btn-sm view-detail-btn" data-id="${listing.maYeuCau}">
+                                                <i class="bi bi-eye"></i> Xem chi tiết
+                                            </button>
+                                            <button type="button" class="btn btn-success btn-sm approve-btn" data-id="${listing.maYeuCau}">
+                                                <i class="bi bi-check-circle"></i> Phê duyệt
+                                            </button>
+                                            <button type="button" class="btn btn-danger btn-sm reject-btn" data-id="${listing.maYeuCau}">
+                                                <i class="bi bi-x-circle"></i> Từ chối
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        container.innerHTML += card;
+                    });
+                } catch (error) {
+                    console.error("Lỗi khi tải tin đăng chờ duyệt:", error);
+                    loadingMessage.style.display = 'none';
+                    container.innerHTML = '<p class="text-center text-danger">Không thể tải tin đăng chờ duyệt. Vui lòng thử lại.</p>';
+                }
+            }
+
+            // Xử lý các nút hành động (sử dụng event delegation)
+            document.getElementById('pendingListingsContainer').addEventListener('click', function(event) {
+                const target = event.target.closest('button');
+                if (!target) return;
+
+                currentListingIdToActOn = target.dataset.id; // Lưu ID của tin đang thao tác
+
+                if (target.classList.contains('view-detail-btn')) {
+                    showListingDetail(currentListingIdToActOn);
+                } else if (target.classList.contains('approve-btn')) {
+                    if (confirm('Bạn có chắc muốn phê duyệt tin đăng này?')) {
+                        approveListing(currentListingIdToActOn);
+                    }
+                } else if (target.classList.contains('reject-btn')) {
+                    // Mở modal từ chối
+                    const rejectModal = new bootstrap.Modal(document.getElementById('rejectModal'));
+                    rejectModal.show();
+                }
+            });
+
+            // Xử lý nút Phê duyệt từ Modal chi tiết
+            document.getElementById('approveFromModalBtn').addEventListener('click', function() {
+                if (currentListingIdToActOn && confirm('Bạn có chắc muốn phê duyệt tin đăng này?')) {
+                    approveListing(currentListingIdToActOn);
+                    bootstrap.Modal.getInstance(document.getElementById('detailModal')).hide(); // Đóng modal
+                }
+            });
+
+            // Xử lý nút Từ chối từ Modal chi tiết
+            document.getElementById('rejectFromModalBtn').addEventListener('click', function() {
+                if (currentListingIdToActOn) {
+                    bootstrap.Modal.getInstance(document.getElementById('detailModal')).hide(); // Đóng modal chi tiết
+                    const rejectModal = new bootstrap.Modal(document.getElementById('rejectModal')); // Mở modal từ chối
+                    rejectModal.show();
+                }
+            });
+
+            // Xử lý nút Xác nhận Từ chối trong modal từ chối
+            document.getElementById('confirmRejectBtn').addEventListener('click', function() {
+                const reason = document.getElementById('rejectReason').value;
+                if (currentListingIdToActOn) {
+                    rejectListing(currentListingIdToActOn, reason);
+                    bootstrap.Modal.getInstance(document.getElementById('rejectModal')).hide(); // Đóng modal từ chối
+                }
+            });
+
+            async function showListingDetail(id) {
+                try {
+                    // Endpoint này cần được tạo ở backend để trả về chi tiết 1 YeuCauDangTin
+                    const response = await fetch(`${API_BASE_URL}/${id}`);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const listing = await response.json();
+
+                    document.getElementById('detailTitle').textContent = listing.tieuDe;
+                    document.getElementById('detailId').textContent = listing.maYeuCau;
+                    document.getElementById('detailUser').textContent = listing.userGuiYeuCau ? listing.userGuiYeuCau.hoTen : 'N/A';
+                    document.getElementById('detailDate').textContent = new Date(listing.ngayTaoYeuCau).toLocaleString();
+                    document.getElementById('detailPrice').textContent = listing.gia ? `${listing.gia.toLocaleString('vi-VN')} ${listing.donViTien}` : 'Thỏa thuận';
+                    document.getElementById('detailArea').textContent = listing.dienTich ? `${listing.dienTich} m²` : 'N/A';
+                    document.getElementById('detailType').textContent = listing.loaiBds || 'N/A';
+                    document.getElementById('detailPurpose').textContent = listing.mucDich || 'N/A';
+                    document.getElementById('detailLocation').textContent = `${listing.viTri || ''}, ${listing.quanHuyen || ''}, ${listing.thanhPho || ''}`;
+                    document.getElementById('detailRooms').textContent = `PN: ${listing.soPhongNgu || 0}, PT: ${listing.soPhongTam || 0}`;
+                    document.getElementById('detailFloors').textContent = `Tầng: ${listing.tang || 'N/A'} / Tổng: ${listing.tongTang || 'N/A'}`;
+                    document.getElementById('detailFurniture').textContent = listing.noiThat || 'N/A';
+                    document.getElementById('detailDescription').textContent = listing.moTa;
+                    document.getElementById('detailMainImage').src = listing.anhChinh || 'https://via.placeholder.com/600x400?text=No+Image';
+
+                    const otherImagesContainer = document.getElementById('detailOtherImages');
+                    otherImagesContainer.innerHTML = '';
+                    if (listing.hinhAnhYeuCauList && listing.hinhAnhYeuCauList.length > 0) {
+                        listing.hinhAnhYeuCauList.forEach(img => {
+                            const imgElement = document.createElement('img');
+                            imgElement.src = img.duongDan;
+                            imgElement.className = 'img-thumbnail';
+                            imgElement.style.width = '100px';
+                            imgElement.style.height = '70px';
+                            imgElement.style.objectFit = 'cover';
+                            otherImagesContainer.appendChild(imgElement);
+                        });
+                    } else {
+                        otherImagesContainer.innerHTML = '<small class="text-muted">Không có ảnh phụ.</small>';
+                    }
+
+                    const detailModal = new bootstrap.Modal(document.getElementById('detailModal'));
+                    detailModal.show();
+
+                } catch (error) {
+                    console.error("Lỗi khi xem chi tiết tin đăng:", error);
+                    alert("Không thể tải chi tiết tin đăng. Vui lòng thử lại.");
+                }
+            }
+
+
+            async function approveListing(id) {
+                try {
+                    const response = await fetch(`${API_BASE_URL}/approve/${id}`, {
+                        method: 'PUT', // Hoặc POST tùy theo API của bạn
+                        headers: {
+                            'Content-Type': 'application/json',
+                            // 'Authorization': 'Bearer YOUR_ADMIN_TOKEN'
+                        },
+                        // body: JSON.stringify({ userIdDuyet: adminUserId }) // Nếu bạn muốn gửi ID người duyệt
+                    });
+
+                    if (response.ok) {
+                        alert('Tin đăng đã được phê duyệt thành công!');
+                        loadPendingListings(); // Tải lại danh sách để tin đã duyệt biến mất
+                    } else {
+                        const errorData = await response.json();
+                        alert('Lỗi khi phê duyệt tin đăng: ' + (errorData.message || response.statusText));
+                    }
+                } catch (error) {
+                    console.error('Lỗi mạng hoặc server:', error);
+                    alert('Có lỗi xảy ra, vui lòng thử lại.');
+                }
+            }
+
+            async function rejectListing(id, reason) {
+                try {
+                    const response = await fetch(`${API_BASE_URL}/reject/${id}`, {
+                        method: 'PUT', // Hoặc POST tùy theo API của bạn
+                        headers: {
+                            'Content-Type': 'application/json',
+                            // 'Authorization': 'Bearer YOUR_ADMIN_TOKEN'
+                        },
+                        body: JSON.stringify({ 
+                            loiNhanTuChoi: reason 
+                            // userIdDuyet: adminUserId
+                        })
+                    });
+
+                    if (response.ok) {
+                        alert('Tin đăng đã bị từ chối.');
+                        loadPendingListings(); // Tải lại danh sách để tin đã từ chối biến mất
+                    } else {
+                        const errorData = await response.json();
+                        alert('Lỗi khi từ chối tin đăng: ' + (errorData.message || response.statusText));
+                    }
+                } catch (error) {
+                    console.error('Lỗi mạng hoặc server:', error);
+                    alert('Có lỗi xảy ra, vui lòng thử lại.');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
