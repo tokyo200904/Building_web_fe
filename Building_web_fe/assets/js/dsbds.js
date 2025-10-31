@@ -1,7 +1,7 @@
 let bdsToDeleteId = null;
 let bdsToDeleteName = null;
 let bdsList = []; // Lưu toàn bộ danh sách từ API (sau khi filter)
-const pageSize = 5; // Số card mỗi trang
+const pageSize = 12; // Số card mỗi trang
 let currentPage = 1;
 
 // Thêm biến để lưu trữ các bộ lọc hiện tại
@@ -112,13 +112,14 @@ function renderPage(page) {
         }
 
         const colWrapper = document.createElement('div');
-        colWrapper.className = 'col-12 col-md-6';
+        colWrapper.className = 'col-12 col-md-6 col-lg-3';
+
 
         const cardHTML = `
             <div class="card shadow-sm h-100 position-relative">
                 <span class="position-absolute top-0 end-0 m-3 badge ${badgeClass}" style="z-index: 2;">${badgeText}</span>
                 
-                <div style="height: 220px; overflow: hidden;">
+                <div style="height: 180px; overflow: hidden;">
                     <img src="${imgSrc}" class="card-img-top" alt="${bds.tieuDe || 'Hình ảnh'}" style="object-fit: cover; height: 100%; width: 100%;">
                 </div>
 
@@ -141,7 +142,7 @@ function renderPage(page) {
 
                     <div class="mt-auto pt-3 border-top d-flex flex-column flex-md-row gap-2"> 
                         <button class="btn btn-primary btn-lg flex-fill" onclick="viewBds(${bds.maBds})"> 
-                            <i class="bi bi-eye"></i> Xem chi tiết
+                            <i class="bi bi-eye"></i> Xem 
                         </button>
                         <button class="btn btn-outline-warning btn-lg flex-fill" onclick="editBds(${bds.maBds})"> 
                             <i class="bi bi-pencil-square"></i> Sửa

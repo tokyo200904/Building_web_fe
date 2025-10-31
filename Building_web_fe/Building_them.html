@@ -1,175 +1,207 @@
 <!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thêm Bất Động Sản Mới</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .add-bds-container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 30px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-        .form-section {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #e9ecef;
-        }
-        .form-section:last-child {
-            border-bottom: none;
-        }
-        .form-section h4 {
-            color: #007bff;
-            margin-bottom: 20px;
-            border-left: 4px solid #007bff;
-            padding-left: 10px;
-        }
-        .image-upload-area {
-            border: 2px dashed #ced4da;
-            padding: 30px;
-            text-align: center;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-bottom: 20px;
-            transition: border-color 0.3s ease;
-        }
-        .image-upload-area:hover {
-            border-color: #007bff;
-        }
-        .image-preview-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .image-preview-item {
-            position: relative;
-            width: 120px;
-            height: 120px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #f0f0f0;
-        }
-        .image-preview-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .image-preview-item .remove-image {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background-color: rgba(220, 53, 69, 0.8);
-            color: white;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 14px;
-            cursor: pointer;
-            z-index: 10;
-        }
-        .image-preview-item.main-image::after {
-            content: "Ảnh chính";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(0, 123, 255, 0.8);
-            color: white;
-            font-size: 10px;
-            padding: 2px 0;
-            text-align: center;
-        }
-        .set-main-image {
-            position: absolute;
-            bottom: 0; /* Đặt dưới cùng để dễ click */
-            left: 0;
-            right: 0;
-            background-color: rgba(0, 0, 0, 0.6);
-            color: white;
-            font-size: 10px;
-            padding: 4px 0;
-            text-align: center;
-            cursor: pointer;
-            opacity: 0; /* Mặc định ẩn */
-            transition: opacity 0.3s ease;
-            z-index: 5;
-        }
-        .image-preview-item:hover .set-main-image {
-            opacity: 1; /* Hiện khi hover */
-        }
-    </style>
-</head>
-<body>
-    <div class="add-bds-container">
-        <h2 class="text-center mb-4">Đăng Tin Bất Động Sản Mới</h2>
-        <form id="addBdsForm" enctype="multipart/form-data">
+<html lang="en">
 
-            <div class="form-section">
-                <h4><i class="bi bi-info-circle-fill me-2"></i>Thông tin cơ bản</h4>
-                <div class="mb-3">
-                    <label for="tieuDe" class="form-label">Tiêu đề tin đăng <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="tieuDe" name="tieuDe" placeholder="Ví dụ: Bán căn hộ 2PN tại Vinhomes Grand Park" required>
-                </div>
-                <div class="mb-3">
-                    <label for="moTa" class="form-label">Mô tả chi tiết <span class="text-danger">*</span></label>
-                    <textarea class="form-control" id="moTa" name="moTa" rows="5" placeholder="Mô tả các đặc điểm nổi bật, tiện ích, tình trạng, v.v." required></textarea>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 mb-3">
-                        <label for="loaiBds" class="form-label">Loại Bất Động Sản <span class="text-danger">*</span></label>
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Danh sach toa nha</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style_admin_cratebds.css">
+
+  </head>
+
+<body>
+
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">NiceAdmin</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item dropdown">
+
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+          </a><ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>Kevin Anderson</h6>
+              <span>Web Designer</span>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-gear"></i>
+                <span>Account Settings</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                <i class="bi bi-question-circle"></i>
+                <span>Need Help?</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+
+          </ul></li></ul>
+    </nav></header>
+   <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="index.html">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link " data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Quản lý bất động sản</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="Building_them.html" class="active">
+              <i class="bi bi-circle"></i><span>thêm mới bất động sản</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Components Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Duyệt tin</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="Building_admin_duyetTinBDS.html">
+              <i class="bi bi-circle"></i><span>Duyệt tin bất động sản</span>
+            </a>
+          </li>
+          <li>
+            <a href="forms-editors.html">
+              <i class="bi bi-circle"></i><span>Duyệt tin tức</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Forms Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Quản lý tài khoản</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="tables-general.html">
+              <i class="bi bi-circle"></i><span>General Tables</span>
+            </a>
+          </li>
+
+        </ul>
+      </li><!-- End Tables Nav -->
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+    <div class="container container-main">
+        <h2><i class="bi bi-upload me-2"></i>Đăng Tin Bất Động Sản Mới</h2>
+        <form id="postRealEstateForm" class="row g-4" enctype="multipart/form-data">
+
+            <div class="col-12 form-section">
+                <h4><i class="bi bi-card-heading"></i>Thông tin cơ bản</h4>
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label for="tieuDe" class="form-label">Tiêu đề tin đăng <span class="required-star">*</span></label>
+                        <input type="text" class="form-control" id="tieuDe" name="tieuDe" placeholder="Ví dụ: Bán căn hộ 2PN tại Vinhomes Grand Park" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="moTa" class="form-label">Mô tả chi tiết <span class="required-star">*</span></label>
+                        <textarea class="form-control" id="moTa" name="moTa" rows="5" placeholder="Mô tả các đặc điểm nổi bật, vị trí, tình trạng, v.v." required></textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="loaiBds" class="form-label">Loại Bất Động Sản <span class="required-star">*</span></label>
                         <select class="form-select" id="loaiBds" name="loaiBds" required>
                             <option value="">Chọn loại BĐS</option>
                             <option value="CANHO">Căn hộ</option>
-                            <option value="NHARIENG">Nhà riêng</option>
                             <option value="DATNEN">Đất nền</option>
+                            <option value="BIETTHU">Biệt thự</option>
+                            <option value="NHAPHO">Nhà phố</option>
                             <option value="PHONGTRO">Phòng trọ</option>
                             <option value="VANPHONG">Văn phòng</option>
                             <option value="KHOXUONG">Kho xưởng</option>
                             <option value="KHAC">Khác</option>
                         </select>
                     </div>
-                    <div class="col-md-4 mb-3">
-                        <label for="mucDich" class="form-label">Mục đích <span class="text-danger">*</span></label>
-                        <select class="form-select" id="mucDich" name="mucDich" required>
+                    <div class="col-md-6">
+                        <label for="mucDichTinDang" class="form-label">Mục đích tin đăng <span class="required-star">*</span></label>
+                        <select class="form-select" id="mucDichTinDang" name="mucDichTinDang" required>
                             <option value="">Chọn mục đích</option>
                             <option value="BAN">Bán</option>
-                            <option value="THUE">Thuê</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <label for="trangThai" class="form-label">Trạng thái BĐS <span class="text-danger">*</span></label>
-                        <select class="form-select" id="trangThai" name="trangThai" required>
-                            <option value="">Chọn trạng thái</option>
-                            <option value="DANG_BAN">Đang bán</option>
-                            <option value="CHO_THUE">Cho thuê</option>
-                            <option value="DA_BAN">Đã bán</option>
-                            <option value="DA_CHO_THUE">Đã cho thuê</option>
+                            <option value="THUE">Cho Thuê</option>
                         </select>
                     </div>
                 </div>
             </div>
 
-            <div class="form-section">
-                <h4><i class="bi bi-currency-dollar me-2"></i>Giá cả & Diện tích</h4>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="gia" class="form-label">Giá (VNĐ) <span class="text-danger">*</span></label>
+            <div class="col-12 form-section">
+                <h4><i class="bi bi-cash-stack"></i>Giá cả & Diện tích</h4>
+                <div class="row g-3">
+                    <div class="col-md-8">
+                        <label for="gia" class="form-label">Giá <span class="required-star">*</span></label>
                         <div class="input-group">
                             <input type="number" class="form-control" id="gia" name="gia" min="0" step="1000000" placeholder="Ví dụ: 3500000000 (3.5 tỷ)" required>
                             <select class="input-group-text" id="donViTien" name="donViTien">
@@ -178,21 +210,19 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="dienTich" class="form-label">Diện tích (m²) <span class="text-danger">*</span></label>
+                    <div class="col-md-4">
+                        <label for="dienTich" class="form-label">Diện tích (m²) <span class="required-star">*</span></label>
                         <input type="number" class="form-control" id="dienTich" name="dienTich" min="0" step="0.1" placeholder="Ví dụ: 75.5" required>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-4">
                         <label for="soPhongNgu" class="form-label">Số phòng ngủ</label>
                         <input type="number" class="form-control" id="soPhongNgu" name="soPhongNgu" min="0" placeholder="Ví dụ: 2">
                     </div>
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-4">
                         <label for="soPhongTam" class="form-label">Số phòng tắm</label>
                         <input type="number" class="form-control" id="soPhongTam" name="soPhongTam" min="0" placeholder="Ví dụ: 2">
                     </div>
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-4">
                         <label for="tang" class="form-label">Tầng / Tổng tầng</label>
                         <div class="input-group">
                             <input type="number" class="form-control" id="tang" name="tang" min="0" placeholder="Tầng">
@@ -203,271 +233,74 @@
                 </div>
             </div>
 
-            <div class="form-section">
-                <h4><i class="bi bi-geo-alt-fill me-2"></i>Địa chỉ</h4>
-                <div class="mb-3">
-                    <label for="viTri" class="form-label">Địa chỉ chi tiết <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="viTri" name="viTri" placeholder="Số nhà, tên đường, hẻm, ..." required>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="quanHuyen" class="form-label">Quận / Huyện <span class="text-danger">*</span></label>
+            <div class="col-12 form-section">
+                <h4><i class="bi bi-geo-alt-fill"></i>Địa chỉ</h4>
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label for="viTri" class="form-label">Địa chỉ chi tiết <span class="required-star">*</span></label>
+                        <input type="text" class="form-control" id="viTri" name="viTri" placeholder="Số nhà, tên đường, hẻm, ..." required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="quanHuyen" class="form-label">Quận / Huyện <span class="required-star">*</span></label>
                         <input type="text" class="form-control" id="quanHuyen" name="quanHuyen" placeholder="Ví dụ: Quận Bình Thạnh" required>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="thanhPho" class="form-label">Tỉnh / Thành phố <span class="text-danger">*</span></label>
+                    <div class="col-md-6">
+                        <label for="thanhPho" class="form-label">Tỉnh / Thành phố <span class="required-star">*</span></label>
                         <input type="text" class="form-control" id="thanhPho" name="thanhPho" placeholder="Ví dụ: TP. Hồ Chí Minh" required>
                     </div>
                 </div>
-                </div>
+            </div>
 
-            <div class="form-section">
-                <h4><i class="bi bi-house-door-fill me-2"></i>Chi tiết & Tiện ích</h4>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
+            <div class="col-12 form-section">
+                <h4><i class="bi bi-house-fill"></i>Chi tiết khác</h4>
+                <div class="row g-3">
+                    <div class="col-md-6">
                         <label for="noiThat" class="form-label">Tình trạng nội thất</label>
                         <select class="form-select" id="noiThat" name="noiThat">
                             <option value="">Chọn tình trạng</option>
                             <option value="DAY_DU">Đầy đủ nội thất</option>
                             <option value="CO_BAN">Nội thất cơ bản</option>
-                            <option value="KHONG_NOI_THAT">Không nội thất</option>
+                            <option value="TRONG">Không nội thất</option>
                         </select>
                     </div>
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-6">
                         <label for="namXayDung" class="form-label">Năm xây dựng</label>
                         <input type="number" class="form-control" id="namXayDung" name="namXayDung" min="1900" max="2100" placeholder="Ví dụ: 2020">
                     </div>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Tiện ích đi kèm:</label>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="baiDoXe" name="baiDoXe" value="true">
-                        <label class="form-check-label" for="baiDoXe">
-                            Có bãi đỗ xe
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="banCong" name="banCong" value="true">
-                        <label class="form-check-label" for="banCong">
-                            Có ban công
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="thangMay" name="thangMay" value="true">
-                        <label class="form-check-label" for="thangMay">
-                            Có thang máy
-                        </label>
-                    </div>
-                </div>
             </div>
 
-            <div class="form-section">
-                <h4><i class="bi bi-image-fill me-2"></i>Hình ảnh</h4>
-                <p class="text-muted">Chọn ít nhất 1 ảnh. Ảnh đầu tiên tải lên hoặc được chọn làm ảnh chính sẽ là ảnh đại diện.</p>
+            <div class="col-12 form-section">
+                <h4><i class="bi bi-images"></i>Hình ảnh</h4>
+                <p class="text-muted mb-3">Tải lên ít nhất 1 ảnh. Ảnh đầu tiên được tải lên sẽ là ảnh chính mặc định, bạn có thể thay đổi.</p>
                 <div class="image-upload-area" id="imageUploadArea">
-                    <i class="bi bi-cloud-arrow-up display-4 text-muted"></i>
-                    <p class="mt-2 text-muted">Kéo thả ảnh vào đây hoặc click để chọn ảnh</p>
+                    <i class="bi bi-cloud-arrow-up"></i>
+                    <p class="mt-2">Kéo thả ảnh vào đây hoặc <span class="text-primary fw-bold">click để chọn ảnh</span></p>
                     <input type="file" id="imageUploadInput" name="images" multiple accept="image/*" hidden>
                 </div>
                 <div class="image-preview-container" id="imagePreviewContainer">
-                    </div>
+                </div>
             </div>
 
-            <div class="d-flex justify-content-end gap-2 mt-4">
+            <div class="col-12 d-flex justify-content-end gap-3 mt-4">
                 <button type="button" class="btn btn-secondary">Hủy</button>
-                <button type="submit" class="btn btn-primary">Đăng Bất Động Sản</button>
+                <button type="submit" class="btn btn-primary"><i class="bi bi-send-fill me-2"></i>Gửi Yêu Cầu Đăng Tin</button>
             </div>
         </form>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const imageUploadArea = document.getElementById('imageUploadArea');
-            const imageUploadInput = document.getElementById('imageUploadInput');
-            const imagePreviewContainer = document.getElementById('imagePreviewContainer');
-            let uploadedFiles = []; // Mảng chứa các File object
-            let mainImageIndex = -1; // Index của ảnh chính trong uploadedFiles
+  <script src="assets/jquery-3.7.1.min.js"></script>
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
 
-            // Xử lý click vào vùng upload
-            imageUploadArea.addEventListener('click', () => {
-                imageUploadInput.click();
-            });
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/createbds.js"></script>
 
-            // Xử lý kéo thả
-            imageUploadArea.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                imageUploadArea.style.borderColor = '#007bff';
-            });
-            imageUploadArea.addEventListener('dragleave', () => {
-                imageUploadArea.style.borderColor = '#ced4da';
-            });
-            imageUploadArea.addEventListener('drop', (e) => {
-                e.preventDefault();
-                imageUploadArea.style.borderColor = '#ced4da';
-                const files = Array.from(e.dataTransfer.files);
-                handleFiles(files);
-            });
-
-            // Xử lý chọn file qua input
-            imageUploadInput.addEventListener('change', (e) => {
-                const files = Array.from(e.target.files);
-                handleFiles(files);
-            });
-
-            function handleFiles(files) {
-                files.forEach(file => {
-                    if (file.type.startsWith('image/')) {
-                        uploadedFiles.push(file);
-                    }
-                });
-                renderPreviews();
-            }
-
-            function renderPreviews() {
-                imagePreviewContainer.innerHTML = ''; // Xóa tất cả ảnh cũ
-                uploadedFiles.forEach((file, index) => {
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        const previewItem = document.createElement('div');
-                        previewItem.className = 'image-preview-item';
-                        if (index === mainImageIndex) {
-                            previewItem.classList.add('main-image');
-                        }
-
-                        previewItem.innerHTML = `
-                            <img src="${e.target.result}" alt="Preview">
-                            <span class="remove-image" data-index="${index}"><i class="bi bi-x"></i></span>
-                            <span class="set-main-image" data-index="${index}">Đặt làm ảnh chính</span>
-                        `;
-                        imagePreviewContainer.appendChild(previewItem);
-                    };
-                    reader.readAsDataURL(file);
-                });
-            }
-
-            // Xử lý xóa ảnh hoặc đặt ảnh chính
-            imagePreviewContainer.addEventListener('click', (e) => {
-                if (e.target.closest('.remove-image')) {
-                    const indexToRemove = parseInt(e.target.closest('.remove-image').dataset.index);
-                    uploadedFiles.splice(indexToRemove, 1);
-                    if (mainImageIndex === indexToRemove) { // Nếu xóa ảnh chính
-                        mainImageIndex = -1; // Reset ảnh chính
-                    } else if (mainImageIndex > indexToRemove) { // Nếu ảnh chính bị dịch chuyển
-                        mainImageIndex--;
-                    }
-                    renderPreviews();
-                } else if (e.target.closest('.set-main-image')) {
-                    mainImageIndex = parseInt(e.target.closest('.set-main-image').dataset.index);
-                    renderPreviews();
-                }
-            });
-
-            // Xử lý gửi form
-            document.getElementById('addBdsForm').addEventListener('submit', async function(e) {
-                e.preventDefault();
-
-                if (uploadedFiles.length === 0) {
-                    alert('Vui lòng tải lên ít nhất một hình ảnh cho bất động sản.');
-                    return;
-                }
-                if (mainImageIndex === -1 && uploadedFiles.length > 0) {
-                    mainImageIndex = 0; // Nếu chưa chọn ảnh chính, chọn ảnh đầu tiên
-                }
-
-                const formData = new FormData(this);
-
-                // Loại bỏ các checkbox không được chọn để tránh gửi giá trị "off"
-                formData.set('baiDoXe', formData.get('baiDoXe') === 'true');
-                formData.set('banCong', formData.get('banCong') === 'true');
-                formData.set('thangMay', formData.get('thangMay') === 'true');
-
-                // Xử lý các trường rỗng thành null (nếu backend yêu cầu)
-                for (const pair of formData.entries()) {
-                    if (typeof pair[1] === 'string' && pair[1].trim() === '') {
-                        formData.set(pair[0], null);
-                    }
-                }
-                
-                // Thu thập dữ liệu form thành một object JSON
-                const bdsData = {};
-                for (let [key, value] of formData.entries()) {
-                    // Xử lý các giá trị boolean từ checkbox
-                    if (key === 'baiDoXe' || key === 'banCong' || key === 'thangMay') {
-                        bdsData[key] = (value === 'true');
-                    } else if (key === 'gia' || key === 'dienTich') {
-                        // Chuyển đổi sang BigDecimal (nếu backend Spring cần BigDecimal)
-                        bdsData[key] = parseFloat(value);
-                    } else if (key === 'soPhongNgu' || key === 'soPhongTam' || key === 'tang' || key === 'tongTang' || key === 'namXayDung') {
-                        bdsData[key] = parseInt(value) || null; // Convert to int, if empty/invalid then null
-                    } else if (value === 'null' || value === '') { // Xử lý các trường select/input rỗng thành null
-                        bdsData[key] = null;
-                    } else {
-                        bdsData[key] = value;
-                    }
-                }
-
-                // Gán ảnh chính URL và danh sách ảnh phụ
-                let mainImageUrl = '';
-                const hinhAnhList = [];
-
-                // Giả định bạn có một API upload ảnh riêng biệt
-                // Đây là phần cần backend để upload ảnh và trả về URL
-                // Hiện tại, chúng ta sẽ tạo URL giả để test giao diện
-                // Trong thực tế: bạn sẽ gửi `uploadedFiles` đến một endpoint upload ảnh,
-                // nhận về các URL, sau đó gán vào bdsData.
-
-                // Ví dụ tạm thời: Gán URL giả và xử lý ảnh chính
-                uploadedFiles.forEach((file, index) => {
-                    const tempUrl = `https://example.com/uploads/${file.name}`; // URL giả
-                    if (index === mainImageIndex) {
-                        mainImageUrl = tempUrl;
-                    } else {
-                        hinhAnhList.push({ duongDan: tempUrl });
-                    }
-                });
-                if (mainImageUrl === '' && uploadedFiles.length > 0) { // Fallback nếu mainImageIndex không hợp lệ hoặc không có ảnh chính được chọn
-                    mainImageUrl = `https://example.com/uploads/${uploadedFiles[0].name}`;
-                    if (uploadedFiles.length > 1) {
-                        hinhAnhList.push({ duongDan: `https://example.com/uploads/${uploadedFiles[1].name}` });
-                    }
-                }
-
-                bdsData.anhChinh = mainImageUrl;
-                bdsData.hinhAnhList = hinhAnhList;
-
-                console.log("Dữ liệu JSON chuẩn bị gửi:", JSON.stringify(bdsData, null, 2));
-
-                // TODO: Gửi `bdsData` đến API backend của bạn
-                // try {
-                //     const response = await fetch('/api/batdongsan', {
-                //         method: 'POST',
-                //         headers: {
-                //             'Content-Type': 'application/json',
-                //             // 'Authorization': 'Bearer YOUR_TOKEN' // Nếu cần xác thực
-                //         },
-                //         body: JSON.stringify(bdsData)
-                //     });
-
-                //     if (response.ok) {
-                //         const result = await response.json();
-                //         alert('Đăng bất động sản thành công! Mã BDS: ' + result.maBds);
-                //         // Reset form hoặc chuyển hướng
-                //         this.reset();
-                //         uploadedFiles = [];
-                //         mainImageIndex = -1;
-                //         renderPreviews();
-                //     } else {
-                //         const errorData = await response.json();
-                //         alert('Lỗi khi đăng bất động sản: ' + (errorData.message || response.statusText));
-                //     }
-                // } catch (error) {
-                //     console.error('Lỗi mạng hoặc server:', error);
-                //     alert('Có lỗi xảy ra, vui lòng thử lại.');
-                // }
-            });
-        });
-    </script>
 </body>
 </html>
